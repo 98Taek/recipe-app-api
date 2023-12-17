@@ -28,14 +28,15 @@ services:
       - POSTGRES_PASS=${DB_PASS}
 
   proxy:
-    build: ./proxy
-  restart: always
-  depends_on:
-    - app
-  ports:
-    - 80:8000
-  volumes:
-    - static-data:/vol/static
+    build:
+      context: ./proxy
+    restart: always
+    depends_on:
+      - app
+    ports:
+      - 8000:8000
+    volumes:
+      - static-data:/vol/static
 
 volumes:
   postgres-data:
